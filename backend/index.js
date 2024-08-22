@@ -1,7 +1,7 @@
 import express, { json } from 'express';
 import { connect } from 'mongoose';
 import dotenv from 'dotenv'
-
+import cors from 'cors'
 dotenv.config()
 import publicroutes from './microservices/index.js'
 import authRoutes from './routes/authRoutes.js';
@@ -24,6 +24,7 @@ connect(process.env.MONGO_URI, {
 
 
 console.log(process.env.PORT,process.env.MONGO_URI)
+app.use(cors())
 app.use('/api/auth', authRoutes);       
 app.use('/api/candidate', candidateRoutes);  
 app.use('/api/key', apiKeyRoutes);  
